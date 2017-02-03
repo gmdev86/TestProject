@@ -10,8 +10,8 @@
     };
 
     signOn() {
-        //window.location.replace("https://www.wrike.com/oauth2/authorize?client_id=YBdUueJr&response_type=code");
-        window.location.replace("/dashboard");
+        window.location.replace("https://www.wrike.com/oauth2/authorize?client_id=YBdUueJr&response_type=code");
+        //window.location.replace("/dashboard");
     };
 
 };
