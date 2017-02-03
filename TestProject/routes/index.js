@@ -97,21 +97,21 @@ router.get('/getFolderTree', function (req, res) {
         {
         "kind": "folderTree",
         "data": [
-            {
-            "id": "IEAAF6ILI4D4YNH4",
-            "title": "New Project",
-            "childIds": [],
-            "scope": "RbFolder",
-            "project": {
-                "authorId": "KUACSIZD",
-                "ownerIds": [
-                "KUACSIZD"
-                ],
-                "status": "Green",
-                "createdDate": "2017-01-20T21:09:23Z"
-            }
-            }
-        ]
+                {
+                "id": "IEAAF6ILI4D4YNH4",
+                "title": "New Project",
+                "childIds": [],
+                "scope": "RbFolder",
+                "project": {
+                    "authorId": "KUACSIZD",
+                    "ownerIds": [
+                    "KUACSIZD"
+                    ],
+                    "status": "Green",
+                    "createdDate": "2017-01-20T21:09:23Z"
+                }
+                }
+            ]
         }
     ];
 
