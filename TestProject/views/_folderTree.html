@@ -1,0 +1,9 @@
+<div class="list-group">
+  <!-- loop over blog posts and render them -->
+  <% posts.forEach((post) => { %>
+    <a href="#" class="list-group-item">
+      <h4 class="list-group-item-heading"><%= post.data.id %></h4>
+      <p class="list-group-item-text"><%= post.data.title %></p>
+    </a>
+  <% }) %>
+</div>

@@ -1,0 +1,312 @@
+{
+  "kind": "folderTree",
+  "data": [
+    {
+      "id": "IEAAF6ILI7777777",
+      "title": "Root",
+      "childIds": [
+        "IEAAF6ILI4DZT443",
+        "IEAAF6ILI4D4PDVU",
+        "IEAAF6ILI4D2CTEE",
+        "IEAAF6ILI4D4PDWR",
+        "IEAAF6ILI4DZT5B6"
+      ],
+      "scope": "WsRoot"
+    },
+    {
+      "id": "IEAAF6ILI7777776",
+      "title": "Recycle Bin",
+      "childIds": [
+        "IEAAF6ILI4D4YNH4",
+        "IEAAF6ILI4D7CFCC",
+        "IEAAF6ILI4D6IWI7",
+        "IEAAF6ILI4D6JDHZ"
+      ],
+      "scope": "RbRoot"
+    },
+    {
+      "id": "IEAAF6ILI4DZT5Y3",
+      "title": "Advancement",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZT53U",
+      "title": "Financial Aid",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZT5B6",
+      "title": "Functional Champion",
+      "childIds": [
+        "IEAAF6ILI4D4Q7TJ",
+        "IEAAF6ILI4DZT5Y3",
+        "IEAAF6ILI4DZT542",
+        "IEAAF6ILI4DZUBKO",
+        "IEAAF6ILI4D7B4VU",
+        "IEAAF6ILI4DZT52O",
+        "IEAAF6ILI4DZUCQC",
+        "IEAAF6ILI4DZT5YT",
+        "IEAAF6ILI4DZUBFA",
+        "IEAAF6ILI4DZT53F",
+        "IEAAF6ILI4DZUCWW",
+        "IEAAF6ILI4DZT53U"
+      ],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZT53F",
+      "title": "Registrar's Office",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZT5YT",
+      "title": "Finance",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZT542",
+      "title": "Human Resources",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZT52O",
+      "title": "Student Affairs",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZUBFA",
+      "title": "Admissions",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZUBKO",
+      "title": "Institutional Research",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZUCQC",
+      "title": "PMO",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZUCWW",
+      "title": "ACTS",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4D4YNH4",
+      "title": "New Project",
+      "childIds": [],
+      "scope": "RbFolder",
+      "project": {
+        "authorId": "KUACSIZD",
+        "ownerIds": [
+          "KUACSIZD"
+        ],
+        "status": "Green",
+        "createdDate": "2017-01-20T21:09:23Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4D2CTEE",
+      "title": "EIT-AS Projects",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4DZT443",
+      "title": "Institute Projects",
+      "childIds": [
+        "IEAAF6ILI4D47KOH",
+        "IEAAF6ILI4DS7FUX",
+        "IEAAF6ILI4D5YNIV",
+        "IEAAF6ILI4DZQZIC",
+        "IEAAF6ILI4D5YQVH",
+        "IEAAF6ILI4D6PCXZ",
+        "IEAAF6ILI4DZS5WG"
+      ],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4D4Q7TJ",
+      "title": "EIT",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4D4PDVU",
+      "title": "Other EIT-AS Requests",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4D4PDWR",
+      "title": "ACTS Project Requests",
+      "childIds": [
+        "IEAAF6ILI4DZQZIC",
+        "IEAAF6ILI4D5YQVH"
+      ],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4D5YNIV",
+      "title": "ISSM Implementation",
+      "childIds": [],
+      "scope": "WsFolder",
+      "project": {
+        "authorId": "KUAB3WPR",
+        "ownerIds": [
+          "KUAB3WPR"
+        ],
+        "status": "Green",
+        "createdDate": "2017-01-26T19:08:03Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4D7B4VU",
+      "title": "Academic Affairs",
+      "childIds": [],
+      "scope": "WsFolder"
+    },
+    {
+      "id": "IEAAF6ILI4D7CFCC",
+      "title": "CampusLabs",
+      "childIds": [],
+      "scope": "RbFolder",
+      "project": {
+        "authorId": "KUABT62W",
+        "ownerIds": [
+          "KUABT62W",
+          "KUACWPBU",
+          "KUACWNOR"
+        ],
+        "status": "Green",
+        "createdDate": "2017-02-02T22:15:20Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4DZQZIC",
+      "title": "Infosilem Implementation",
+      "childIds": [],
+      "scope": "WsFolder",
+      "project": {
+        "authorId": "KUAB3WPR",
+        "ownerIds": [
+          "KUAB3WPR"
+        ],
+        "status": "Green",
+        "createdDate": "2017-01-03T15:47:51Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4DZS5WG",
+      "title": "Business Process Review",
+      "childIds": [],
+      "scope": "WsFolder",
+      "project": {
+        "authorId": "KUAB3WPR",
+        "ownerIds": [
+          "KUAB3WPR"
+        ],
+        "status": "Green",
+        "createdDate": "2017-01-03T19:54:43Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4D47KOH",
+      "title": "Enterprise CRM",
+      "childIds": [],
+      "scope": "WsFolder",
+      "project": {
+        "authorId": "KUAB3WPR",
+        "ownerIds": [
+          "KUAB3WPR"
+        ],
+        "status": "Green",
+        "createdDate": "2017-01-23T15:18:14Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4DS7FUX",
+      "title": "Banner XE Upgrade",
+      "childIds": [],
+      "scope": "WsFolder",
+      "project": {
+        "authorId": "KUAB3WPR",
+        "ownerIds": [
+          "KUAB3WPR"
+        ],
+        "status": "Green",
+        "createdDate": "2016-11-15T19:51:28Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4D6IWI7",
+      "title": "XE Upgrade Tasks  Event Mgmt",
+      "childIds": [],
+      "scope": "RbFolder",
+      "project": {
+        "authorId": "KUAB3WPR",
+        "ownerIds": [
+          "KUAB3WPR"
+        ],
+        "status": "Green",
+        "createdDate": "2017-01-30T18:46:51Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4D5YQVH",
+      "title": "Handshake",
+      "childIds": [],
+      "scope": "WsFolder",
+      "project": {
+        "authorId": "KUAB3WPR",
+        "ownerIds": [
+          "KUAB3WPR",
+          "KUACVQED",
+          "KUACWNOR"
+        ],
+        "status": "Green",
+        "createdDate": "2017-01-26T19:20:36Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4D6JDHZ",
+      "title": "Banner Finance Admnistration and Banner General Administration",
+      "childIds": [],
+      "scope": "RbFolder",
+      "project": {
+        "authorId": "KUAB3WPR",
+        "ownerIds": [
+          "KUAB3WPR"
+        ],
+        "status": "Green",
+        "createdDate": "2017-01-30T19:25:46Z"
+      }
+    },
+    {
+      "id": "IEAAF6ILI4D6PCXZ",
+      "title": "EMS Upgrade",
+      "childIds": [],
+      "scope": "WsFolder",
+      "project": {
+        "authorId": "KUAB3WPR",
+        "ownerIds": [
+          "KUAB3WPR"
+        ],
+        "status": "Green",
+        "createdDate": "2017-01-31T15:07:44Z"
+      }
+    }
+  ]
+}
