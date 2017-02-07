@@ -1,0 +1,9 @@
+<div class="list-group">
+  <% posts.forEach((post) => { %>
+    <a href="#" class="list-group-item list-group-item-success justify-content-between">
+      <span class="badge badge-default badge-pill"><%= post.total %></span>
+      <strong><%= post.title %></strong>
+      - <%= post.id %>        
+    </a>
+  <% }) %>
+</div>

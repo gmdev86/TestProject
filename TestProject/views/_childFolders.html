@@ -1,0 +1,8 @@
+<ul class="nav nav-second-level collapse" aria-expanded="false">
+    <% posts.forEach((post) => { %>
+        <li href="#" class="grandChildfolder list-group-item justify-content-between">
+        <strong><%= post.title %></strong>
+        <div style="display: none"><%= post.id %></div>   
+        </li>
+    <% }) %>
+</ul>

@@ -1,0 +1,9 @@
+<div class="list-group">
+  <!-- loop over blog posts and render them -->
+  <% posts.forEach((post) => { %>
+    <a href="#" class="list-group-item list-group-item-success justify-content-between">
+      <strong>Account ID:<%= post.id %></strong>
+      - Account name: <%= post.name %>        
+    </a>
+  <% }) %>
+</div>

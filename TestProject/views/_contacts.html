@@ -1,0 +1,16 @@
+<ul class="list-group" style="text-align: left">
+  <!-- loop over blog posts and render them -->
+  <% posts.forEach((post) => { %>
+    <li class="list-group-item list-group-item-success">
+      <strong><%= post.id %></strong>
+      - <%= post.firstName %>, <%= post.lastName %>   
+      <ul class="list-group">
+          <% post.profiles.forEach((profile) => { %>
+            <li class="list-group-item list-group-item-info">
+                <strong>Account ID: <%= profile.accountId %></strong>
+            </li>
+          <% }) %>
+      </ul>     
+    </li>
+  <% }) %>
+</ul>

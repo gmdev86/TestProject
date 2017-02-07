@@ -7,6 +7,13 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}/TestProject/bin/www",
+            "cwd": "${workspaceRoot}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Launch via NPM",
             "runtimeExecutable": "npm",
             "windows": {

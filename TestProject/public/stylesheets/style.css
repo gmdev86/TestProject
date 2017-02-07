@@ -1,8 +1,17 @@
-body {
+/*body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}*/
+
+#side-menu :hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+#side-menu {
+  background-color: #e7e7e7;
 }
