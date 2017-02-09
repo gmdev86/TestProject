@@ -8,6 +8,7 @@ var router = express.Router();
 var querystring = require('querystring');
 var https = require('https');
 var ejs = require('ejs');
+var fs = require('fs');
 //var oRequest = require('request');
 
 /* GET Login page. */
@@ -361,7 +362,7 @@ router.post('/loadTasksForFolder', function (req, res) {
      var options = {
        host: 'www.wrike.com',
        port: 443,
-       path: '/api/v3/folders/' + body.id + '/tasks',
+       path: '/api/v3/folders/' + body.id + '/tasks?fields=["subTaskIds"]',
        method: 'GET',
        headers: {
            'Authorization': 'bearer ' + access_token
@@ -378,15 +379,222 @@ router.post('/loadTasksForFolder', function (req, res) {
             var oData = JSON.parse(result);
             var oDs = [];
 
+            // var answer = {
+            //     "view": "",
+            //     "master": [{
+            //         "parentId": "",
+            //         "subTaskIds": []
+            //     }]                
+            // };
+
             for(var i = 0; i < oData["data"].length; i++){
                 var array = {};
+                var ids = "";
                 array.id = oData["data"][i].id;
-                array.title = oData["data"][i].title;
+                array.title = oData["data"][i].title;              
+
+                for(var x = 0; x < oData["data"][i].subTaskIds.length; x++){
+                    ids += oData["data"][i].subTaskIds[x];
+                    if(x != oData["data"][i].subTaskIds.length - 1){
+                        ids += ",";
+                    };
+                };
+
+                array.ids = ids;  
                 oDs.push(array);
             };   
 
             var partial = res.render('_tasks', { posts: oDs });
             res.end(partial);
+
+            /**** example of loading partial into variable ****/
+            /*var tmp = fs.readFileSync("views/_tasks.html").toString();
+            var template = ejs.compile(tmp)({ posts: oDs });
+            answer.view = template;
+            res.end(JSON.stringify(answer));*/
+        });
+        response.on('error', function (err) {
+            console.log(err);
+        });       
+    }).on('error', function (e) {
+       res.sendStatus(500);
+    }).end();
+});
+
+router.post('/loadSubTasks', function (req, res) {
+    var access_token = req.session['access_token'];
+    var body = req.body;
+
+    var options = {
+        host: 'www.wrike.com',
+        port: 443,
+        path: '/api/v3/tasks/' + body.ids,
+        method: 'GET',
+        headers: {
+            'Authorization': 'bearer ' + access_token
+        }
+    };
+
+    https.request(options, function (response) {
+        var result = '';
+        response.on('data', function (chunk) {
+            console.log(chunk);
+            result += chunk;
+        });
+        response.on('end', function () {
+            console.log(result);
+            var oData = JSON.parse(result);
+            var oDs = [];
+
+            for(var i = 0; i < oData["data"].length; i++){    
+                var array = {};
+                array.id = oData["data"][i].id;
+                array.title = oData["data"][i].title;
+                //array.permalink = oData["data"][i].permalink; //testing
+                oDs.push(array);
+            };  
+            
+            var partial = res.render('_subTasks', { posts: oDs });
+            res.end(partial);
+        });
+        response.on('error', function (err) {
+            console.log(err);
+        });       
+    }).on('error', function (e) {
+       res.sendStatus(500);
+    }).end();
+});
+
+router.post('/loadTask', function (req, res) {
+    var access_token = req.session['access_token'];
+    var body = req.body;
+
+    var options = {
+        host: 'www.wrike.com',
+        port: 443,
+        path: '/api/v3/tasks/' + body.id,
+        method: 'GET',
+        headers: {
+            'Authorization': 'bearer ' + access_token
+        }
+    };
+
+    https.request(options, function (response) {
+        var result = '';
+        response.on('data', function (chunk) {
+            console.log(chunk);
+            result += chunk;
+        });
+        response.on('end', function () {
+            var oData = JSON.parse(result);
+            res.end(JSON.stringify(oData));
+        });
+        response.on('error', function (err) {
+            console.log(err);
+        });       
+    }).on('error', function (e) {
+       res.sendStatus(500);
+    }).end();
+});
+
+router.post('/loadProfile', function (req, res) {
+    var access_token = req.session['access_token'];
+    var body = req.body;
+
+    var options = {
+        host: 'www.wrike.com',
+        port: 443,
+        path: '/api/v3/contacts?me=true',
+        method: 'GET',
+        headers: {
+            'Authorization': 'bearer ' + access_token
+        }
+    };
+
+    https.request(options, function (response) {
+        var result = '';
+        response.on('data', function (chunk) {
+            console.log(chunk);
+            result += chunk;
+        });
+        response.on('end', function () {
+            var oData = JSON.parse(result);
+            res.end(JSON.stringify(oData));
+        });
+        response.on('error', function (err) {
+            console.log(err);
+        });       
+    }).on('error', function (e) {
+       res.sendStatus(500);
+    }).end();
+});
+
+router.get('/loadTasksWidget', function (req, res) {
+    var access_token = req.session['access_token'];
+    var userId = req.session['Contact_ID'];
+
+    var options = {
+        host: 'www.wrike.com',
+        port: 443,
+        path: '/api/v3/tasks?responsibles=[' + userId + ']',
+        method: 'GET',
+        headers: {
+            'Authorization': 'bearer ' + access_token
+        }
+    };
+
+    https.request(options, function (response) {
+        var result = '';
+        response.on('data', function (chunk) {
+            console.log(chunk);
+            result += chunk;
+        });
+        response.on('end', function () {
+            var oData = JSON.parse(result);
+
+            //get the count and create the data layer in partial.
+
+            res.end(JSON.stringify(oData));
+        });
+        response.on('error', function (err) {
+            console.log(err);
+        });       
+    }).on('error', function (e) {
+       res.sendStatus(500);
+    }).end();
+});
+
+router.post('/getUser', function (req, res) {
+    var access_token = req.session['access_token'];
+    var body = req.body;
+
+    var options = {
+        host: 'www.wrike.com',
+        port: 443,
+        path: '/api/v3/contacts?me=true',
+        method: 'GET',
+        headers: {
+            'Authorization': 'bearer ' + access_token
+        }
+    };
+
+    https.request(options, function (response) {
+        var result = '';
+        response.on('data', function (chunk) {
+            console.log(chunk);
+            result += chunk;
+        });
+        response.on('end', function () {
+            var oData = JSON.parse(result);
+            var avatarUrl = "";
+
+            for(var i = 0; i < oData["data"].length; i++){
+                req.session['Contact_ID'] = oData["data"][i].id;
+                req.session['AvatarUrl'] = oData["data"][i].avatarUrl;
+                avatarUrl = oData["data"][i].avatarUrl;
+            }; 
+
+            res.end(avatarUrl);
         });
         response.on('error', function (err) {
             console.log(err);

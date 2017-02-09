@@ -1,8 +1,15 @@
 <div class="list-group">
   <% posts.forEach((post) => { %>
-    <a href="#" class="list-group-item list-group-item-success justify-content-between">
+    <li href="#" class="task-icon list-group-item list-group-item-success justify-content-between">
       <strong><%= post.title %></strong>
-      - <%= post.id %>        
-    </a>
+      - <%= post.id %> 
+      <div class="hidden-parent-id" style="display: none"><%= post.id %></div>
+      <%if (post.ids != "") { %>
+        <div class="hidden-children" style="display: none"><%= post.ids %></div>
+        <i class="fa fa-chevron-circle-up fa-2x" aria-hidden="true" style="float: right;"></i>
+        <i class="fa fa-chevron-circle-down fa-2x" aria-hidden="true" style="float: right; display: none"></i>
+        <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true" style="float: right; display: none"></i>
+      <% } %>       
+    </li>
   <% }) %>
 </div>
