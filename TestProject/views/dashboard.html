@@ -18,6 +18,11 @@
     <!-- Custom Fonts -->
     <link href="/public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- jquery ui -->
+    <link href="/public/vendor/jquery/WR-ui/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="/public/vendor/jquery/WR-ui/jquery-ui.structure.min.css" rel="stylesheet" type="text/css">
+    <link href="/public/vendor/jquery/WR-ui/jquery-ui.theme.min.css" rel="stylesheet" type="text/css">
+
     <link href="/public/stylesheets/style.css" rel="stylesheet">
 </head>
 <body>
@@ -154,6 +159,7 @@
                         <div id="RW-Tasks-Widget"></div>
                     </div>
                 </div>
+                <div id="RW-Widget-Items" style="display: none" class="row"></div>
                 <div class="row">
                     <div class="col-xs-5">
                         <!--<div class="row" id="groupLoading">
@@ -176,7 +182,7 @@
                         <div id="inject_tasks"></div>
 
                     </div>
-                    <div class="divider col-xs-1"></div>
+                    <div class="divider col-xs-1" id="RW-Divider" style="display: none;"></div>
                     <div class="col-xs-6">
                         <div id="form-inject" style="padding-left: 15px;"></div>
                     </div>                
@@ -198,6 +204,31 @@
                 </div>
             </div>
         </div>
+
+        <!-- Testing section -->
+            <!--<div id="draggable" class="WR ui-widget-content">
+                <p class="WR ui-widget-header">I can be dragged only by this handle</p>
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </div>
+            
+            <ul>
+                <li id="draggable" class="WR ui-state-highlight">Drag me down<i class="fa fa-bars" aria-hidden="true"></i></li>
+            </ul>
+            
+            <ul id="sortable">
+                <li class="WR ui-state-default">Item 1<i class="fa fa-bars" aria-hidden="true"></i></li>
+                <li class="WR ui-state-default">Item 2<i class="fa fa-bars" aria-hidden="true"></i></li>
+                <li class="WR ui-state-default">Item 3<i class="fa fa-bars" aria-hidden="true"></i></li>
+                <li class="WR ui-state-default">Item 4<i class="fa fa-bars" aria-hidden="true"></i></li>
+                <li class="WR ui-state-default">Item 5<i class="fa fa-bars" aria-hidden="true"></i></li>
+            </ul>-->
+
+            <!--<style>
+                #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
+                #inject_folderTree i { cursor: move; }
+            </style>-->
+        <!-- /Testing section -->
+
     <!-- /#wrapper -->
         </div>
     <!-- jQuery -->
@@ -215,9 +246,28 @@
     <!-- Custom JavaScript -->
     <script src="/public/javascripts/LogoutMgr.js"></script>
     <script src="/public/javascripts/indexMgr.js?v=1.00"></script>
+
+    <!-- Jquery UI -->
+    <script src="/public/vendor/jquery/WR-ui/jquery-ui.min.js"></script>
+
     <script type="text/javascript">
         window.onload = function () {
             var logoutMgr = new LogoutMgr();
+            //$( "#draggable" ).draggable({ handle: "i" });
+            //$( "#draggable2" ).draggable({ cancel: "p.ui-widget-header" });
+            //$( "div" ).disableSelection();  
+
+            // $( "#sortable" ).sortable({
+            //     revert: true
+            // });
+            // $( ".projectFolders" ).draggable({
+            //     handle: "i",
+            //     connectToSortable: "#sortable",
+            //     helper: "clone",
+            //     revert: "invalid"
+            // });
+            // $( "ul, li" ).disableSelection();
+
         };
         $(document).ready(function () {
             var indexMgr = new IndexMgr();

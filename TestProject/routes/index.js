@@ -30,7 +30,8 @@ router.get('/dashboard', function(req, res, next) {
         client_id: "YBdUueJr",
         client_secret: "uxwxruAr7C4NJD9Pxfy65KqKLqy1UYw8R55T9lazzumsuwDRkj75WEUGI08petGp",
         grant_type: 'authorization_code',
-        code: authorization_code
+        code: authorization_code,
+        scope: "amReadWriteUser,wsReadWrite"
     });
 
     // request option
@@ -93,11 +94,11 @@ router.get('/getGroups', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
-            console.log(result);
+            //console.log(result);
             var oData = JSON.parse(result);
             var oDs = [];
 
@@ -135,7 +136,7 @@ router.get('/getFolderTree', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
@@ -178,11 +179,11 @@ router.get('/getProjectFolders', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
-            console.log(result);
+            //console.log(result);
             var oData = JSON.parse(result);
             var oDs = [];
             var Root;
@@ -221,7 +222,7 @@ router.post('/loadChildFolderByIds', function (req, res) {
     };
 
     // testing
-    console.log(ids);
+    //console.log(ids);
     var options = {
         host: 'www.wrike.com',
         port: 443,
@@ -235,11 +236,11 @@ router.post('/loadChildFolderByIds', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
-            console.log(result);
+            //console.log(result);
             var oData = JSON.parse(result);
             var oDs = [];
 
@@ -280,11 +281,11 @@ router.post('/getChildFolderById', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
-            console.log(result);
+            //console.log(result);
             res.end(result);
         });
         response.on('error', function (err) {
@@ -309,7 +310,7 @@ router.post('/getGrandChildFolders', function (req, res) {
             };        
         };
 
-        console.log(ids);
+        //console.log(ids);
         var options = {
             host: 'www.wrike.com',
             port: 443,
@@ -323,11 +324,11 @@ router.post('/getGrandChildFolders', function (req, res) {
         https.request(options, function (response) {
             var result = '';
             response.on('data', function (chunk) {
-                console.log(chunk);
+                //console.log(chunk);
                 result += chunk;
             });
             response.on('end', function () {
-                console.log(result);
+                //console.log(result);
                 var oData = JSON.parse(result);
                 var oDs = [];
 
@@ -372,7 +373,7 @@ router.post('/loadTasksForFolder', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
@@ -438,11 +439,11 @@ router.post('/loadSubTasks', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
-            console.log(result);
+            //console.log(result);
             var oData = JSON.parse(result);
             var oDs = [];
 
@@ -482,7 +483,7 @@ router.post('/loadTask', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
@@ -514,7 +515,7 @@ router.post('/loadProfile', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
@@ -546,14 +547,61 @@ router.get('/loadTasksWidget', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
             var oData = JSON.parse(result);
+            var container = [];
+            var answer = {};
+            var ids = "";
 
             //get the count and create the data layer in partial.
+            answer.total = oData["data"].length;
 
+            for(var x = 0; x < oData["data"].length; x++){
+                ids += oData["data"][x].id;
+                if(x != oData["data"].length - 1){
+                    ids += ",";
+                };
+            };
+
+            answer.ids = ids;
+            container.push(answer);
+
+            var partial = res.render('_taskWidget', { posts: container });
+            res.end(partial);
+        });
+        response.on('error', function (err) {
+            console.log(err);
+        });       
+    }).on('error', function (e) {
+       res.sendStatus(500);
+    }).end();
+});
+
+router.post('/loadWidgetItems', function (req, res) {
+    var access_token = req.session['access_token'];
+    var body = req.body;
+
+    var options = {
+        host: 'www.wrike.com',
+        port: 443,
+        path: '/api/v3/tasks/' + body.ids,
+        method: 'GET',
+        headers: {
+            'Authorization': 'bearer ' + access_token
+        }
+    };
+
+    https.request(options, function (response) {
+        var result = '';
+        response.on('data', function (chunk) {
+            //console.log(chunk);
+            result += chunk;
+        });
+        response.on('end', function () {
+            var oData = JSON.parse(result);
             res.end(JSON.stringify(oData));
         });
         response.on('error', function (err) {
@@ -581,7 +629,7 @@ router.post('/getUser', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
@@ -624,11 +672,11 @@ router.get('/getContacts', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
-            console.log(result);
+            //console.log(result);
             var oData = JSON.parse(result);
             var oDs = [];
 
@@ -686,11 +734,11 @@ router.get('/getUserById', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
-            console.log(result);
+            //console.log(result);
             var oData = JSON.parse(result);
             var oDs = [];
 
@@ -732,11 +780,11 @@ router.get('/getAccounts', function (req, res) {
     https.request(options, function (response) {
         var result = '';
         response.on('data', function (chunk) {
-            console.log(chunk);
+            //console.log(chunk);
             result += chunk;
         });
         response.on('end', function () {
-            console.log(result);
+            //console.log(result);
             var oData = JSON.parse(result);
             var oDs = [];
 

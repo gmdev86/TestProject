@@ -16,6 +16,9 @@
             //set header back to dashboard
             $('.page-header').text('Dashboard');
 
+            // show task widget
+            document.getElementById('RW-Tasks-Widget').style.display = "block";
+
             //show dashboard
             var dash = document.getElementById('RW-Dashboard');
             dash.style.display = "block";
@@ -27,6 +30,16 @@
             //show side nav folders 
             var sideNav = document.getElementById('inject_folderTree');
             sideNav.style.display = "block";
+
+            // clear out tasks and forms
+            document.getElementById('inject_tasks').innerHTML = "";
+            document.getElementById('form-inject').innerHTML = "";
+
+            //hide middle divider
+            document.getElementById('RW-Divider').style.display = "none";
+
+            //hide widget Items
+            document.getElementById("RW-Widget-Items").innerHTML = "";
         });
 
     };
@@ -91,6 +104,19 @@
                         document.getElementById("mainLoading").style.display = "none";
                         var inject_folderTree = document.getElementById('inject_folderTree');
                         inject_folderTree.innerHTML = result;
+
+                        $( "#sortable" ).sortable({
+                            revert: true
+                        });
+
+                        $( "#draggable" ).draggable({
+                            handle: "i",
+                            connectToSortable: "#sortable",
+                            revert: "invalid",
+                            cancel: "li.projectFolders"
+                        });
+
+                        $( "ul, li" ).disableSelection();
 
                         $(".projectFolders").on('click',function(event){
                             var li = event.currentTarget;
@@ -160,6 +186,9 @@
                                 $('.page-header').text(title);
 
                                 console.log(id);
+                                //hide widget Items
+                                document.getElementById("RW-Widget-Items").innerHTML = "";
+
                                 //Load tasks for folderId
                                 document.getElementById("tasksLoading").style.display = "block";
                                 self.loadTasksForFolder(id);
@@ -224,6 +253,9 @@
                     
                 });
 
+                // hide task widget
+                document.getElementById('RW-Tasks-Widget').style.display = "none";
+
             },
             error: function (e) {
                 console.log(e);
@@ -283,7 +315,8 @@
                 var pre = document.createElement("pre");
                 pre.innerText = JSON.stringify(JSON.parse(result),null, ' ');
                 div.appendChild(pre);
-                //div.innerHTML = result;
+                //show middle divider
+                document.getElementById('RW-Divider').style.display = "block";
             },
             error: function (e) {
                 console.log(e);
@@ -325,6 +358,9 @@
                 //hide side nav folders 
                 var sideNav = document.getElementById('inject_folderTree');
                 sideNav.style.display = "none";
+
+                //hide middle divider
+                document.getElementById('RW-Divider').style.display = "none";
             },
             error: function (e) {
                 console.log(e);
@@ -333,22 +369,62 @@
 
     };
 
-    loadTasksWidget(){
-        var self = this;
+loadTasksWidget(){
+    var self = this;
 
-        $.ajax({
-            url: "http://localhost:1337/loadTasksWidget",
-            type: "GET",
-            async: true,
-            contentType: 'application/json', //must have this: tells the server what type
-            success: function (result) {
-                console.log(result);
-            },
-            error: function (e) {
-                console.log(e);
-            }
-        }); 
+    $.ajax({
+        url: "http://localhost:1337/loadTasksWidget",
+        type: "GET",
+        async: true,
+        contentType: 'application/json', //must have this: tells the server what type
+        success: function (result) {
+            // hide RW-Tasks-Widget-Loading
+            document.getElementById('RW-Tasks-Widget-Loading').style.display = "none";
+            // inject RW-Tasks-Widget
+            var widget = document.getElementById('RW-Tasks-Widget');
+            widget.innerHTML = result;
+
+            var widgetLoadTask = document.getElementById('WR-Widget-Task-Load-Items');
+            widgetLoadTask.addEventListener('click',function(e){
+                var ids = document.getElementById('WR-hidden-task-ids').innerText;
+                console.log(ids);
+                // this will be moved to auto load
+                self.loadWidgetItems(ids);
+            });
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    }); 
+};
+
+loadWidgetItems(ids){
+    var self = this;
+
+        var data = {
+        "ids": ids
     };
+
+    $.ajax({
+        url: "http://localhost:1337/loadWidgetItems",
+        type: "POST",
+        async: true,
+        data: JSON.stringify(data),
+        contentType: 'application/json', //must have this: tells the server what type
+        success: function (result) {
+            var div = document.getElementById("RW-Widget-Items");
+            div.innerHTML = '';
+            var pre = document.createElement("pre");
+            pre.innerText = JSON.stringify(JSON.parse(result),null, ' ');
+            div.appendChild(pre);
+            div.style.display = "block";
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    }); 
+
+};
 
     getContacts(){
         var self = this;

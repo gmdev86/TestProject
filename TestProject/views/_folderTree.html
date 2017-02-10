@@ -7,11 +7,13 @@
     </a>
   <% }) %>
 </div>-->
-
+<ul id="sortable">
   <% posts.forEach((post) => { %>
-    <li href="#" class="projectFolders list-group-item justify-content-between">
+    <li id="draggable" href="#" class="projectFolders list-group-item justify-content-between" style="width: 250px; float:left; left: -40px;">
+      <i class="projectFolders-select fa fa-bars" aria-hidden="true" style="cursor: move"></i>
       <span class="badge badge-default badge-pill"><%= post.total %></span>
       <strong><%= post.title %></strong>
       <div style="display: none"><%= post.id %></div>   
     </li>
   <% }) %>
+</ul>
