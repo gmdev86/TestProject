@@ -131,6 +131,27 @@
 
                         <div id="inject_folderTree"></div>
 
+            <ul id="sortable1">
+                <li id="draggable2" href="#" class="projectFolders list-group-item justify-content-between" style="width: 250px; float:left; left: -40px;">
+                    <i class="projectFolders-select fa fa-bars" aria-hidden="true" style="cursor: move"></i>
+                    <span class="badge badge-default badge-pill">12</span>
+                    <strong>testing</strong>
+                    <div style="display: none">1234</div>   
+                </li>
+                <li id="draggable2" href="#" class="projectFolders list-group-item justify-content-between" style="width: 250px; float:left; left: -40px;">
+                    <i class="projectFolders-select fa fa-bars" aria-hidden="true" style="cursor: move"></i>
+                    <span class="badge badge-default badge-pill">12</span>
+                    <strong>testing1</strong>
+                    <div style="display: none">2345</div>   
+                </li>
+                <li id="draggable2" href="#" class="projectFolders list-group-item justify-content-between" style="width: 250px; float:left; left: -40px;">
+                    <i class="projectFolders-select fa fa-bars" aria-hidden="true" style="cursor: move"></i>
+                    <span class="badge badge-default badge-pill">12</span>
+                    <strong>testing2</strong>
+                    <div style="display: none">3456</div>   
+                </li>
+            </ul>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -223,6 +244,8 @@
                 <li class="WR ui-state-default">Item 5<i class="fa fa-bars" aria-hidden="true"></i></li>
             </ul>-->
 
+
+
             <!--<style>
                 #draggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 0 10px 10px 0; }
                 #inject_folderTree i { cursor: move; }
@@ -253,20 +276,21 @@
     <script type="text/javascript">
         window.onload = function () {
             var logoutMgr = new LogoutMgr();
-            //$( "#draggable" ).draggable({ handle: "i" });
+            //$( "#draggable2" ).draggable({ handle: "i" });
             //$( "#draggable2" ).draggable({ cancel: "p.ui-widget-header" });
             //$( "div" ).disableSelection();  
 
-            // $( "#sortable" ).sortable({
-            //     revert: true
-            // });
-            // $( ".projectFolders" ).draggable({
-            //     handle: "i",
-            //     connectToSortable: "#sortable",
-            //     helper: "clone",
-            //     revert: "invalid"
-            // });
-            // $( "ul, li" ).disableSelection();
+            $( "#sortable1" ).sortable({
+                revert: true
+            });
+            $( "#draggable2" ).draggable({
+                handle: "i",
+                connectToSortable: "#sortable1",
+                //helper: "clone",
+                revert: "invalid",
+                cancel: "li.projectFolders"
+            });
+            $( "li" ).disableSelection();
 
         };
         $(document).ready(function () {
